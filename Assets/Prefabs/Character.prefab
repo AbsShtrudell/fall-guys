@@ -2505,6 +2505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathDuration: 1.8
+  _deathY: -3
   _puppetMaster: {fileID: 9217616390488987816}
   _focusPoint: {fileID: 9217616391012375407}
 --- !u!114 &2386828510004451060

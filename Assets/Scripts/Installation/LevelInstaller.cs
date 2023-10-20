@@ -9,11 +9,15 @@ namespace FallGuys
     {
         [SerializeField] private CharacterController _characterRef;
         [SerializeField] private Spawner _spawner;
+        [SerializeField] private EndZone _endZone;
+        [SerializeField] private GameModeController _gameModeController;
         public override void InstallBindings()
         {
             Container.Bind<IFactory<CharacterController>>().FromInstance(new CharacterController.Factory(_characterRef, Container));
 
             Container.BindInstance(_spawner).AsSingle().NonLazy();
+            Container.BindInstance(_endZone).AsSingle().NonLazy();
+            Container.BindInstance(_gameModeController).AsSingle().NonLazy();
         }
     }
 }

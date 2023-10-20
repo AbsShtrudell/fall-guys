@@ -52,6 +52,8 @@ namespace FallGuys
 
         private void HandleMovement()
         {
+            if (_playerController.ActiveCharacter == null) return;
+
             float h = _movementAction.ReadValue<Vector2>().x;
             float v = _movementAction.ReadValue<Vector2>().y;
 

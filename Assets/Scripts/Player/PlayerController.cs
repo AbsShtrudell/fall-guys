@@ -9,6 +9,7 @@ namespace FallGuys
     public class PlayerController : MonoBehaviour
     {
         [Zenject.Inject] private Spawner _spawner;
+        [Zenject.Inject] private Lifes _lifes;
 
         [SerializeField] private CharacterController _activeCharacter;
 
@@ -24,7 +25,9 @@ namespace FallGuys
 
         private void OnKilled(CharacterController character)
         {
-            ChangeCharacter(_spawner.Spawn());
+            _lifes.Die();
+            if (_lifes.CurrentLifes > 0)
+                ChangeCharacter(_spawner.Spawn());
         }
 
         private void ChangeCharacter(CharacterController character)

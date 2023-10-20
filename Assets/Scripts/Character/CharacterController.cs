@@ -9,6 +9,7 @@ namespace FallGuys
     public class CharacterController : MonoBehaviour
     {
         [SerializeField] private float _deathDuration;
+        [SerializeField] private float _deathY = -10;
 
         [Header("References")]
         [SerializeField] private PuppetMaster _puppetMaster;
@@ -18,7 +19,7 @@ namespace FallGuys
 
         public Transform FocusPoint { get { return _focusPoint; } }
 
-        private Coroutine _killCoroutine;
+        private Coroutine _killCoroutine = null;
 
         public event Action<CharacterController> OnCharacterKilled;
 
@@ -35,6 +36,12 @@ namespace FallGuys
         private void OnDisable()
         {
             Health.HealthChange -= OnHealthChange;
+        }
+
+        private void Update()
+        {
+            if (_focusPoint.position.y < _deathY && _killCoroutine == null)
+                Kill();
         }
 
         private void OnHealthChange(int health)

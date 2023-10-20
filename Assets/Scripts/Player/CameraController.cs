@@ -27,12 +27,6 @@ namespace FallGuys
         private Quaternion _rotation = Quaternion.identity;
         private Vector3 _smoothPosition;
 
-        void Start()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-
         protected virtual void FixedUpdate()
         {
             UpdateTransform();
