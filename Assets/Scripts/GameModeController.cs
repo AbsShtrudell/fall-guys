@@ -12,20 +12,32 @@ namespace FallGuys
         [Zenject.Inject]
         private EndZone _endZone;
         [Zenject.Inject]
+        private StartLine _startLine;
+        [Zenject.Inject]
         private Lifes _lifes;
         [Zenject.Inject]
         private PlayerController _playerController;
-
         public event Action<float> Won;
         public event Action<float> Loose;
+
+        private float startTime = -1;
 
         private void OnEnable()
         {
             _endZone.ReachedEnd += OnReached;
             _lifes.LifesChanged += OnLifesChanged;
+            _startLine.Crossed += OnCrossed;
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+        }
+
+        private void OnCrossed()
+        {
+            if(startTime < 0)
+            {
+                startTime = Time.time;
+            }
         }
 
         private void OnLifesChanged(int obj)
@@ -41,7 +53,7 @@ namespace FallGuys
         private void OnReached()
         {
             ShowCursor();
-            Won?.Invoke(1);
+            Won?.Invoke(Time.time - startTime);
             Debug.Log("Won");
         }
 

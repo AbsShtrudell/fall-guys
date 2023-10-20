@@ -35,7 +35,7 @@ namespace FallGuys {
             _resultPanel.SetActive(true);
             _messageText.text = "Победа";
             _endIcon.sprite = _winIcon;
-            _timeText.text = "Время: " + time.ToString();
+            _timeText.text = "Время: " + FormatTime(time);
         }
 
         private void OnLoose(float time)
@@ -43,12 +43,22 @@ namespace FallGuys {
             _resultPanel.SetActive(true);
             _messageText.text = "Поражение";
             _endIcon.sprite = _looseIcon;
-            _timeText.text = "Время: " + time.ToString();
+            _timeText.enabled = false;
         }
 
         public void RestartAction()
         {
             _gameMode.Restart();
+        }
+
+        public string FormatTime(float seconds)
+        {
+            int minutes = (int)seconds / 60;
+            int remainingSeconds = (int)seconds % 60;
+
+            string formattedTime = string.Format("{0:00}:{1:00}", minutes, remainingSeconds);
+
+            return formattedTime;
         }
     }
 }
