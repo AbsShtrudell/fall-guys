@@ -35,7 +35,7 @@ namespace FallGuys {
             _resultPanel.SetActive(true);
             _messageText.text = "Победа";
             _endIcon.sprite = _winIcon;
-            _timeText.text = time.ToString();
+            _timeText.text = "Время: " + time.ToString();
         }
 
         private void OnLoose(float time)
@@ -43,7 +43,7 @@ namespace FallGuys {
             _resultPanel.SetActive(true);
             _messageText.text = "Поражение";
             _endIcon.sprite = _looseIcon;
-            _timeText.text = time.ToString();
+            _timeText.text = "Время: " + time.ToString();
         }
 
         public void RestartAction()

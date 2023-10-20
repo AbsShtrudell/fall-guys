@@ -5706,7 +5706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.45136172, g: 0.5493311, b: 0.6509434, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7469,7 +7469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _winIcon: {fileID: 21300000, guid: 82dee20991cba0042b709c456aca00aa, type: 3}
-  _looseIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  _looseIcon: {fileID: 21300000, guid: b63859d69ea3c244eb625becaa1bba3e, type: 3}
   _messageText: {fileID: 1626327710}
   _timeText: {fileID: 972928084}
   _endIcon: {fileID: 439430196}
@@ -8214,6 +8214,22 @@ PrefabInstance:
     - target: {fileID: 8394364550299583794, guid: 5329061b137211142a549a2c08297bc8, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394364550982165805, guid: 5329061b137211142a549a2c08297bc8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b63859d69ea3c244eb625becaa1bba3e, type: 3}
+    - target: {fileID: 8394364550982165805, guid: 5329061b137211142a549a2c08297bc8, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394364550982165805, guid: 5329061b137211142a549a2c08297bc8, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394364550982165805, guid: 5329061b137211142a549a2c08297bc8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8018868
       objectReference: {fileID: 0}
     - target: {fileID: 8394364550982165806, guid: 5329061b137211142a549a2c08297bc8, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10975,7 +10991,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
