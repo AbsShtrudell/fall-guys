@@ -1146,4 +1146,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.73333335
+    functionName: EnableTrap
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 28d3bcd6d2801d04b80f2a96576402cc, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.4333334
+    functionName: DisableTrap
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 28d3bcd6d2801d04b80f2a96576402cc, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

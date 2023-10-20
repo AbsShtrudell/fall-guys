@@ -6,6 +6,7 @@ using RootMotion;
 namespace FallGuys {
 	public class CharacterThirdPerson : CharacterBase {
 
+
 		// Animation state
 		public struct AnimState {
 			public Vector3 moveDirection; // the forward speed
@@ -14,9 +15,10 @@ namespace FallGuys {
 			public float yVelocity; // y velocity of the character
 		}
 
-		[Header("References")]
+        [Zenject.Inject] protected UserInputController _userControl;
+
+        [Header("References")]
         [SerializeField] protected CharacterAnimationBase _characterAnimation; // the animation controller
-		[SerializeField] protected UserInputController _userControl; // user input
 
 		[Header("Movement")]
         [SerializeField] protected bool _smoothPhysics = true; // If true, will use interpolation to smooth out the fixed time step.

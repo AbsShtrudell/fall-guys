@@ -4,7 +4,7 @@ namespace FallGuys
 {
     public class CameraController : MonoBehaviour
     {
-        [SerializeField] private CharacterController _target;
+        [Zenject.Inject] private PlayerController _playerController;
 
         [Header("Position")]
         [SerializeField] private bool _smoothFollow;
@@ -22,15 +22,10 @@ namespace FallGuys
         private float _currentX;
         private float _currentY;
 
+        //chached variables
         private Vector3 _position;
         private Quaternion _rotation = Quaternion.identity;
         private Vector3 _smoothPosition;
-
-        public CharacterController Target 
-        { 
-            get { return _target; } 
-            set { if (value != null) _target = value; } 
-        }
 
         void Start()
         {
@@ -74,11 +69,11 @@ namespace FallGuys
             // Rotation
             _rotation = Quaternion.AngleAxis(_currentX, Vector3.up) * Quaternion.AngleAxis(_currentY, Vector3.right);
 
-            if (_target != null)
+            if (_playerController.ActiveCharacter != null)
             {
                 // Smooth follow
-                if (!_smoothFollow) _smoothPosition = _target.FocusPoint.position;
-                else _smoothPosition = Vector3.Lerp(_smoothPosition, _target.FocusPoint.position, deltaTime * _followSpeed);
+                if (!_smoothFollow) _smoothPosition = _playerController.ActiveCharacter.FocusPoint.position;
+                else _smoothPosition = Vector3.Lerp(_smoothPosition, _playerController.ActiveCharacter.FocusPoint.position, deltaTime * _followSpeed);
 
                 // Position
                 Vector3 t = _smoothPosition + _rotation * _offset;

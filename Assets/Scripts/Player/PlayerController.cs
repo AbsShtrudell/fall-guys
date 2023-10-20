@@ -1,30 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 namespace FallGuys
 {
     public class PlayerController : MonoBehaviour
     {
+        [Zenject.Inject] private Spawner _spawner;
+
         [SerializeField] private CharacterController _activeCharacter;
-        [SerializeField] private CharacterController _secondCharacter;
-        [SerializeField] private CameraController _camera;
 
         public CharacterController ActiveCharacter { get { return _activeCharacter; } }
 
+        public event Action<CharacterController> ActiveCharChanged;
+
         private void OnEnable()
         {
-            _activeCharacter.OnCharacterKilled += ChangeCharacter;
+            ChangeCharacter(_spawner.Spawn());
+
         }
 
-        private void OnDisable()
+        private void OnKilled(CharacterController character)
         {
-            _activeCharacter.OnCharacterKilled -= ChangeCharacter;
+            ChangeCharacter(_spawner.Spawn());
         }
 
         private void ChangeCharacter(CharacterController character)
         {
-            _camera.Target = _secondCharacter;
+            if(_activeCharacter != null)
+                _activeCharacter.OnCharacterKilled -= OnKilled;
+
+            _activeCharacter = character;
+            ActiveCharChanged?.Invoke(_activeCharacter);
+
+            _activeCharacter.OnCharacterKilled += OnKilled;
         }
     }
 }

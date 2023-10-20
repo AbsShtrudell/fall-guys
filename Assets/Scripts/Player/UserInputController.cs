@@ -6,8 +6,10 @@ namespace FallGuys
 {
     public class UserInputController : MonoBehaviour
     {
-        [SerializeField] private PlayerController _playerController;
-        [SerializeField] private CameraController _cameraController;
+        [Zenject.Inject] 
+        private PlayerController _playerController;
+        [Zenject.Inject] 
+        private CameraController _cameraController;
 
         public struct State
         {
