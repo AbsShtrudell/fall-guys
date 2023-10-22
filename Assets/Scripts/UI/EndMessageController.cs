@@ -11,12 +11,14 @@ namespace FallGuys {
         private GameModeController _gameMode;
 
         [SerializeField] private Sprite _winIcon;
+        [SerializeField] private Color _winColor;
         [SerializeField] private Sprite _looseIcon;
+        [SerializeField] private Color _looseColor;
 
+        [Header("References")]
         [SerializeField] private TMPro.TMP_Text _messageText;
         [SerializeField] private TMPro.TMP_Text _timeText;
         [SerializeField] private Image _endIcon;
-
         [SerializeField] private GameObject _resultPanel;
 
         private void Awake()
@@ -33,16 +35,24 @@ namespace FallGuys {
         private void OnWin(float time)
         {
             _resultPanel.SetActive(true);
+
             _messageText.text = "Победа";
+
             _endIcon.sprite = _winIcon;
+            _endIcon.color = _winColor;
+
             _timeText.text = "Время: " + FormatTime(time);
         }
 
         private void OnLoose(float time)
         {
             _resultPanel.SetActive(true);
+
             _messageText.text = "Поражение";
+
             _endIcon.sprite = _looseIcon;
+            _endIcon.color = _looseColor;
+
             _timeText.enabled = false;
         }
 
