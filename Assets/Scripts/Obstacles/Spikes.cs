@@ -32,7 +32,7 @@ public class Spikes : MonoBehaviour
 
     private void ActivateTrap()
     {
-        if (_activated == true && Time.time < _lastActive + _rechargeTime) return;
+        if (_activated == true || Time.time < _lastActive + _rechargeTime) return;
 
         _animator.SetTrigger("Enable");
         _activated = true;

@@ -19,7 +19,7 @@ namespace FallGuys
         private void Start()
         {
             _currentWindDirection = _windDirection;
-            StartWindChangeRoutine();
+            //StartWindChangeRoutine();
         }
 
         private void StartWindChangeRoutine()

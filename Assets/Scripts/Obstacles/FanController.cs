@@ -33,6 +33,7 @@ namespace FallGuys
             {
                 yield return new WaitForSeconds(_changeInterval);
 
+                _animator.SetBool("Backwards", !_animator.GetBool("Backwards"));
 
             }
         }
