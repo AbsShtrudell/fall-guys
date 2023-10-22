@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,12 +9,18 @@ namespace FallGuys
     {
         [Zenject.Inject] private PlayerController _playerController;
 
-        [SerializeField] private Slider healthSlider;
+        [SerializeField] private Slider _healthSlider;
+        [SerializeField] private Gradient _gradient;
+        [SerializeField] private RectTransform _iconRect;
+        [SerializeField] private Image _sliderImage;
+        [SerializeField] private Image _iconImage;
 
         private void OnEnable()
         {
             _playerController.ActiveCharChanged += FocusCharacter;
-            FocusCharacter(_playerController.ActiveCharacter);
+
+            if (_playerController.ActiveCharacter != null)
+                FocusCharacter(_playerController.ActiveCharacter);
         }
 
         private void OnDisable()
@@ -27,9 +34,13 @@ namespace FallGuys
             UpdateHealthBar(controller.Health.CurrentHealth);
         }
 
-        private void UpdateHealthBar(int health)
+        private void UpdateHealthBar(float health)
         {
-            healthSlider.value = (float)health / (float)_playerController.ActiveCharacter.Health.MaxHealth;
+            _iconRect.DOShakeScale(0.5f, 0.5f, 10);
+            float h = health;
+            _sliderImage.color = _gradient.Evaluate(h);
+            _iconImage.color = _gradient.Evaluate(h);
+            _healthSlider.value = h;
         }
     }
 }

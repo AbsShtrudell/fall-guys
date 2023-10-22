@@ -1,3 +1,4 @@
+using DG.Tweening;
 using FallGuys;
 using System;
 using System.Collections;
@@ -9,6 +10,8 @@ public class LifesCounterController : MonoBehaviour
     [Zenject.Inject]
     private Lifes _lifes;
 
+    [SerializeField] private RectTransform _iconRect;
+
     [SerializeField] private TMPro.TMP_Text _textMeshPro;
 
     private void OnEnable()
@@ -19,6 +22,8 @@ public class LifesCounterController : MonoBehaviour
 
     private void UpdateValue(int obj)
     {
+        _iconRect.DOShakeScale(0.5f, 0.5f, 10);
+
         _textMeshPro.text = obj.ToString();
     }
 }

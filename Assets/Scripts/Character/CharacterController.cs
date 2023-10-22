@@ -15,11 +15,11 @@ namespace FallGuys
         [SerializeField] private PuppetMaster _puppetMaster;
         [SerializeField] private Transform _focusPoint;
 
+        private bool _dead = false;
+
         public Health Health { get; private set; }
 
         public Transform FocusPoint { get { return _focusPoint; } }
-
-        private Coroutine _killCoroutine = null;
 
         public event Action<CharacterController> OnCharacterKilled;
 
@@ -31,6 +31,7 @@ namespace FallGuys
         private void OnEnable()
         {
             Health.HealthChange += OnHealthChange;
+            _puppetMaster.Resurrect();
         }
 
         private void OnDisable()
@@ -40,30 +41,21 @@ namespace FallGuys
 
         private void Update()
         {
-            if (_focusPoint.position.y < _deathY && _killCoroutine == null)
+            if (_focusPoint.position.y < _deathY && !_dead)
                 Kill();
         }
 
-        private void OnHealthChange(int health)
+        private void OnHealthChange(float health)
         {
-            if (health <= 0)
+            if (health <= 0 && !_dead)
                 Kill();
         }
 
         public void Kill()
         {
-            if (_killCoroutine != null)
-                StopCoroutine(_killCoroutine);
-
-            _killCoroutine = StartCoroutine(KillCharacterCoroutine());
-        }
-
-        private IEnumerator KillCharacterCoroutine()
-        {
+            _dead = true;
             _puppetMaster.Kill();
-            yield return new WaitForSeconds(_deathDuration);
             OnCharacterKilled?.Invoke(this);
-            GameObject.Destroy(gameObject);
         }
 
         public class Factory : IFactory<CharacterController>

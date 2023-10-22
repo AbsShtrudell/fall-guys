@@ -13,7 +13,7 @@ namespace FallGuys
         public int MaxHealth { get { return _maxHealth; } }
         public int CurrentHealth { get; private set; }
 
-        public event Action<int> HealthChange;
+        public event Action<float> HealthChange;
 
         private float _lastHit;
 
@@ -29,7 +29,7 @@ namespace FallGuys
             _lastHit = Time.time;
             CurrentHealth -= damage;
             Debug.Log(CurrentHealth.ToString());
-            HealthChange?.Invoke(CurrentHealth);
+            HealthChange?.Invoke(CurrentHealth / (float)_maxHealth);
         }
     }
 }
