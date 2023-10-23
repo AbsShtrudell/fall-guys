@@ -40,6 +40,11 @@ namespace FallGuys
             }
         }
 
+        public void ReverseWind()
+        {
+            _currentWindDirection = _currentWindDirection * -1;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             Rigidbody r = other.GetComponent<Rigidbody>();
