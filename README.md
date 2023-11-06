@@ -1,4 +1,4 @@
-# Fall Guys Lesta Task
+# Fall Guys Task
 
 Gameplay video: https://youtu.be/luRsWvfSLOU
 
